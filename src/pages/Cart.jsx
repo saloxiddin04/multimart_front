@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../styles/cart.css'
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
@@ -12,6 +12,10 @@ function Cart() {
 
     const {cartItems, totalAmount, totalQuantity} = useSelector((state) => state.cart)
 
+    useEffect(() => {
+        window.scroll(0,0)
+    }, [cartItems])
+
     return (
         <Helmet title="Cart">
             <CommonSection title="Shopping Cart"/>
@@ -22,7 +26,7 @@ function Cart() {
                             {cartItems === null || cartItems.length === 0 ? (
                                 <h2 className="fs-4 text-center">No item added to the cart</h2>
                             ) : (
-                                <table className="table table-bordered">
+                                <table className="table table-bordered w-100">
                                     <thead>
                                     <tr>
                                         <th>Image</th>

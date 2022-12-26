@@ -44,6 +44,8 @@ function Home() {
         setMobileProducts(filteredMobileProducts)
         setWirelessProducts(filteredWirelessProducts)
         setPopularProductsProducts(filteredPopularProducts)
+
+        window.scroll(0,0)
     }, [products])
 
     return (

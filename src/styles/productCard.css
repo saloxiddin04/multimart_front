@@ -17,3 +17,9 @@
         font-size: 1rem;
     }
 }
+
+@media screen and (max-width: 320px) {
+    .product__img {
+        height: 290px;
+    }
+}

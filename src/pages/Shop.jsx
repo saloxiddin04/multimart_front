@@ -64,6 +64,7 @@ function Shop() {
 
     useEffect(() => {
         handleFilter()
+        window.scroll(0,0)
     }, [products])
 
     return (
@@ -72,24 +73,15 @@ function Shop() {
             <section>
                 <Container>
                     <Row>
-                        <Col lg={3} md={6}>
+                        <Col lg={3} md={6} xs={12}>
                             <div className="filter__widget">
-                                <select onChange={handleFilter} defaultValue="all">
+                                <select className="w-100" onChange={handleFilter} defaultValue="all">
                                     <option value="all">Filter by category</option>
                                     <option value="sofa">Sofa</option>
                                     <option value="chair">Chair</option>
                                     <option value="mobile">Mobile</option>
                                     <option value="watch">Watch</option>
                                     <option value="wireless">Wireless</option>
-                                </select>
-                            </div>
-                        </Col>
-                        <Col lg={3} md={6} className="text-end">
-                            <div className="filter__widget">
-                                <select>
-                                    <option>Sort by</option>
-                                    <option value="ascending">Ascending</option>
-                                    <option value="descending">Descending</option>
                                 </select>
                             </div>
                         </Col>

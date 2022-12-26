@@ -11,3 +11,23 @@ td i {
 td, th {
     color: var(--primary-color);
 }
+
+@media screen and (max-width: 375px) {
+    .table tr td img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+}
+@media screen and (max-width: 320px) {
+    .table tr th {
+        font-size: 12px !important;
+        padding: 5px !important;
+    }
+    .table tr td {
+        font-size: 12px !important;
+    }
+    .table tr td img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}

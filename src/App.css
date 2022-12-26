@@ -72,3 +72,7 @@ select:focus {
         padding: 40px 0;
     }
 }
+
+.container {
+    overflow: hidden;
+}
