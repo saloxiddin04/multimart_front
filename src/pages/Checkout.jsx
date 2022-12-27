@@ -41,6 +41,8 @@ function Checkout() {
         getUser()
     }, [user])
 
+    useEffect(() => window.scroll(0,0))
+
     const {displayName, phoneNumber} = form
 
     const handleSubmit = async () => {
