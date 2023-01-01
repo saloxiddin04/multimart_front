@@ -91,24 +91,38 @@ function Header() {
                                 <i className="ri-shopping-bag-line"></i>
                                 <span className="badge">{cartItems.length}</span>
                             </span>
-                            <div className="profile">
+                            <div className="profile d-flex align-items-center gap-2">
                                 <motion.img
                                     whileTap={{scale: 1.2}}
                                     src={currentUser ? currentUser.photoURL : user_logo}
                                     alt={currentUser?.displayName}
-                                    onClick={toggleProfileActions}
                                 />
-                                <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
-                                    {currentUser
-                                        ?
-                                        <span onClick={logout}>Logout</span>
-                                        :
-                                        <div className="d-flex align-items-center justify-content-center flex-column">
-                                            <Link to="/register">Signup</Link>
-                                            <Link to="/login">Login</Link>
-                                        </div>
-                                    }
-                                </div>
+                                {currentUser ? (
+                                    <span style={{cursor: "pointer"}} onClick={logout}>Logout</span>
+                                ) : (
+                                    <div className="d-flex align-items-center gap-2">
+                                        <Link to="/register">Signup</Link>
+                                        <Link className="btn btn-primary" to="/login">Login</Link>
+                                    </div>
+                                )}
+                                {/*<motion.img*/}
+                                {/*    whileTap={{scale: 1.2}}*/}
+                                {/*    src={currentUser ? currentUser.photoURL : user_logo}*/}
+                                {/*    alt={currentUser?.displayName}*/}
+                                {/*    onClick={toggleProfileActions}*/}
+                                {/*/>*/}
+                                {/*<div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>*/}
+                                {/*    {currentUser ?*/}
+                                {/*        (*/}
+                                {/*            <span onClick={logout}>Logout</span>*/}
+                                {/*        ) : (*/}
+                                {/*            <div className="d-flex align-items-center justify-content-center flex-column">*/}
+                                {/*                <Link to="/register">Signup</Link>*/}
+                                {/*                <Link to="/login">Login</Link>*/}
+                                {/*            </div>*/}
+                                {/*        )*/}
+                                {/*    }*/}
+                                {/*</div>*/}
                             </div>
                             <div className="mobile__menu">
                                 <span onClick={menuToggle}>

@@ -76,18 +76,16 @@
 
 .nav__icons .profile {
     position: relative;
-    z-index: 9;
+    z-index: 99;
 }
 
 .nav__icons .profile .profile__actions {
     position: absolute;
     top: 100%;
-    left: -10px;
+    left: 0;
     width: 150px;
-    z-index: 10;
+    z-index: 9;
     padding: 15px;
-    align-items: center;
-    flex-direction: column;
     background: var(--card-bg-01);
     line-height: 30px;
     display: none;
@@ -95,7 +93,7 @@
 }
 
 .show__profileActions {
-    display: flex !important;
+    display: block !important;
 }
 
 .nav__icons .profile img {

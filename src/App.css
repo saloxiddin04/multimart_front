@@ -74,5 +74,5 @@ select:focus {
 }
 
 .container {
-    overflow: hidden;
+    overflow: hidden !important;
 }
