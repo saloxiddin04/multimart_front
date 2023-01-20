@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles/cart.css'
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
@@ -7,6 +7,7 @@ import {cartActions} from "../redux/slices/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
+import Select from "react-select";
 
 function Cart() {
 
@@ -32,6 +33,7 @@ function Cart() {
                                         <th>Image</th>
                                         <th>Title</th>
                                         <th>Price</th>
+                                        <th>Select size</th>
                                         <th>Qty</th>
                                         <th>Delete</th>
                                     </tr>
@@ -79,6 +81,9 @@ function Cart() {
 }
 
 const Tr = ({item}) => {
+
+    const [selectedSize, setSelectedSize] = useState([])
+
     const dispatch = useDispatch()
     const deleteProduct = () => {
         dispatch(cartActions.deleteItem({
@@ -86,13 +91,19 @@ const Tr = ({item}) => {
         }))
         toast.success("Deleted successfully")
     }
+
+
+    const handleChange = (e) => {
+        selectedSize.push(e.target.value)
+    }
     const incItem = () => {
         dispatch(
             cartActions.addItem({
                 id: item.id,
                 title: item.title,
                 price: item.price,
-                imgURL: item.imgURL
+                sizes: item.sizes,
+                urls: item.urls
             })
         )
         toast.success("Product added to cart successfully!")
@@ -109,9 +120,17 @@ const Tr = ({item}) => {
 
     return (
         <tr key={item.id}>
-            <td><img src={item.imgURl} alt=""/></td>
+            <td>
+                <img
+                    src={
+                        item.urls === undefined ? "" : item.urls[0]
+                    }
+                     alt="urls"
+                />
+            </td>
             <td>{item.title}</td>
             <td>{item.price}$</td>
+            <td>{item.sizes}</td>
             <td className="d-flex gap-2 justify-content-center align-items-center">
                 <span className="p-1 border" style={{cursor: "pointer"}} onClick={incItem}>+</span>
                 {item.quantity}

@@ -1,11 +1,11 @@
 import React from 'react';
 import ProductCard from "./ProductCard";
 
-function ProductsList({data}) {
+function ProductsList({data, loading}) {
     return (
         <>
             {data && data?.map((item) => (
-                <ProductCard item={item} key={item.id}/>
+                <ProductCard item={item} loading={loading} key={item.id}/>
             ))}
         </>
     );

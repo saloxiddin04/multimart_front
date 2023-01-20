@@ -2,6 +2,21 @@
     margin-top: 50px;
 }
 
+.children {
+    display: flex;
+    flex-direction: column;
+}
+
+.child-img {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.child-img:nth-child(1) {
+    margin-top: 0 !important;
+}
+
 .product__details h2 {
     font-size: 1.8rem;
 }

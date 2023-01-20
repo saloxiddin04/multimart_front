@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {Container, Row, Col} from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
@@ -15,6 +15,8 @@ import useGetData from "../custom_hooks/useGetData";
 
 function ProductDetails() {
     const [product, setProduct] = useState({})
+    const [mainImage, setMainImage] = useState(0)
+    const [selectedSize, setSelected] = useState(null)
     const dispatch = useDispatch()
     const {id} = useParams()
 
@@ -36,7 +38,8 @@ function ProductDetails() {
 
     const {
         title,
-        imgURL,
+        urls,
+        sizes,
         price,
         shortDesc,
         desc,
@@ -46,15 +49,24 @@ function ProductDetails() {
     const relatedProducts = products.filter(item => item.category === category)
 
     const addToCart = () => {
-        dispatch(
-            cartActions.addItem({
-                id,
-                title,
-                price,
-                imgURL
-            })
-        )
-        toast.success("Added to successfully!")
+        if (selectedSize === null) {
+            toast.error("Select your size")
+        } else {
+            dispatch(
+                cartActions.addItem({
+                    id: id,
+                    title: title,
+                    price: price,
+                    urls: urls,
+                    sizes: sizes[selectedSize].label
+                })
+            )
+            toast.success("Added to successfully!")
+        }
+    }
+
+    const hanClick = (idx) => {
+        setSelected(idx)
     }
 
     useEffect(() => {
@@ -67,8 +79,30 @@ function ProductDetails() {
             <section>
                 <Container>
                     <Row>
-                        <Col lg={6}>
-                            <img src={imgURL} alt=""/>
+                        <Col lg={6} className="d-flex">
+                            <div className="children">
+                                {urls && urls?.map((image, i) => (
+                                    <img
+                                        className={
+                                            `child-img 
+                                            ${mainImage === i ? 'border p-1' : ""}
+                                        `}
+                                        key={i}
+                                        src={image}
+                                        alt="title"
+                                        onClick={() => setMainImage(i)}
+                                    />
+                                ))}
+                            </div>
+                            <div>
+                                <img
+                                    className="main-image"
+                                    src={
+                                        urls === undefined ? "" : urls[mainImage]
+                                    }
+                                    alt=""
+                                />
+                            </div>
                         </Col>
                         <Col lg={6}>
                             <div className="product__details">
@@ -97,8 +131,24 @@ function ProductDetails() {
                                     <span>Category: {category}</span>
                                 </div>
                                 <p className="mt-3">{shortDesc}</p>
-                                <motion.button onClick={addToCart} whileTap={{scale: 1.1}}
-                                               className="buy__btn btn btn-primary mt-2">
+                                <div className="d-flex gap-3 sizes m-1">
+                                    {sizes && sizes?.map((size, i) => (
+                                        <label
+                                            key={size.value}
+                                        >
+                                <span
+                                    className={selectedSize === i ? "p-1 border border-primary rounded active" : "p-1 border"}
+                                    onClick={() => hanClick(i)}
+                                >
+                                    {size.label}
+                                </span>
+                                        </label>
+                                    ))}
+                                </div>
+                                <motion.button
+                                    onClick={addToCart} whileTap={{scale: 1.1}}
+                                    className="buy__btn btn btn-primary mt-2"
+                                >
                                     Add To Cart
                                 </motion.button>
                             </div>

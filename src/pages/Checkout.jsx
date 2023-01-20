@@ -19,7 +19,7 @@ function Checkout() {
     const {totalQuantity, totalAmount, cartItems} = useSelector((state) => state.cart)
     const {user} = useSelector((state) => state.user)
 
-    const docRef = doc(db, 'users', user.uid)
+    // const docRef = doc(db, 'users', user.uid)
 
     const [form, setForm] = useState({
         displayName: "",
@@ -31,7 +31,7 @@ function Checkout() {
 
     useEffect(() => {
         const getUser = async () => {
-            const docSnap = await getDoc(docRef)
+            const docSnap = await getDoc(doc(db, 'users', user.uid))
             if (docSnap.exists()) {
                 setForm(docSnap.data())
             } else {
@@ -52,8 +52,9 @@ function Checkout() {
         msg += `Name: ${displayName} %0A`
         msg += `Phone Number: ${phoneNumber} %0A %0A`
 
-        cartItems.map(item => {
+        cartItems.map((item, i) => {
             msg += `Product: ${item.title} %0A`
+            msg += `Size: ${item.sizes} %0A`
             msg += `Qty: ${item.quantity} %0A`
             msg += `Price: ${Number(item.price)}$ %0A %0A`
             price += Number(item.price)

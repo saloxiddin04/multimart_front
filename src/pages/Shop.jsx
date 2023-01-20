@@ -5,10 +5,11 @@ import {Container, Row, Col} from "reactstrap";
 import ProductsList from "../components/UI/ProductsList";
 import "../styles/Shop.css"
 import useGetData from "../custom_hooks/useGetData";
+import Skeleton from "react-loading-skeleton";
 
 function Shop() {
 
-    const {data: products} = useGetData('products')
+    const {data: products, loading} = useGetData('products')
     const [productsData, setProductsData] = useState(products)
 
     const handleFilter = (e) => {
@@ -104,7 +105,7 @@ function Shop() {
                             (
                                 <h1 className="text-center fs-4">No products are found!</h1>
                             ) : (
-                                <ProductsList data={productsData}/>
+                                <ProductsList data={productsData} loading={loading}/>
                             )
                         }
                     </Row>

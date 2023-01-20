@@ -1,0 +1,22 @@
+.sizes label {
+    cursor: pointer;
+}
+
+.sizes label input[type="checkbox"] {
+    display: none;
+}
+
+.sizes label span {
+    position: relative;
+    display: inline-block;
+    padding: 10px 15px;
+    border: 1px solid skyblue;
+    border-radius: 15px;
+    user-select: none;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.sizes label input[type="checkbox"]:checked ~ span {
+    border: 1px solid blueviolet;
+}

@@ -12,7 +12,7 @@ import useGetData from "../custom_hooks/useGetData";
 
 function Home() {
 
-    const {data: products} = useGetData('products')
+    const {data: products, loading} = useGetData('products')
 
     const [trendingProducts, setTrendingProducts] = useState([])
     const [bestSalesProducts, setBestSalesProducts] = useState([])
@@ -82,7 +82,7 @@ function Home() {
                         <Col lg={12} className="text-center">
                             <h2>Trending Products</h2>
                         </Col>
-                        <ProductsList data={trendingProducts}/>
+                        <ProductsList data={trendingProducts} loading={loading}/>
                     </Row>
                 </Container>
             </section>
@@ -92,7 +92,7 @@ function Home() {
                         <Col lg={12} className="text-center">
                             <h2>Best Sales</h2>
                         </Col>
-                        <ProductsList data={bestSalesProducts}/>
+                        <ProductsList data={bestSalesProducts} loading={loading}/>
                     </Row>
                 </Container>
             </section>
@@ -130,8 +130,8 @@ function Home() {
                         <Col lg={12} className="text-center mb-5">
                             <h2 className="section__title">New Arrivals</h2>
                         </Col>
-                        <ProductsList data={mobileProducts}/>
-                        <ProductsList data={wirelessProducts}/>
+                        <ProductsList data={mobileProducts} loading={loading}/>
+                        <ProductsList data={wirelessProducts} loading={loading}/>
                     </Row>
                 </Container>
             </section>
@@ -141,7 +141,7 @@ function Home() {
                         <Col lg={12} className="text-center mb-5">
                             <h2 className="section__title">Popular in Category</h2>
                         </Col>
-                        <ProductsList data={popularProducts}/>
+                        <ProductsList data={popularProducts} loading={loading}/>
                     </Row>
                 </Container>
             </section>

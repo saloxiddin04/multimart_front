@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import 'react-loading-skeleton/dist/skeleton.css'
 import Layout from "./components/Layout/Layout";
 
 function App() {
