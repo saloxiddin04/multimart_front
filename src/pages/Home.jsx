@@ -24,19 +24,19 @@ function Home() {
 
     useEffect(() => {
         const filteredTrendingProducts = products.filter(
-            (item) => item.category === "chair"
+            (item) => item.category === "woman_dress"
         )
         const filteredBestProducts = products.filter(
-            (item) => item.category === "sofa"
+            (item) => item.category === "man_dress"
         )
         const filteredMobileProducts = products.filter(
-            (item) => item.category === "mobile"
+            (item) => item.category === "children_dress"
         )
         const filteredWirelessProducts = products.filter(
-            (item) => item.category === "wireless"
+            (item) => item.category === "children_shoes"
         )
         const filteredPopularProducts = products.filter(
-            (item) => item.category === "watch"
+            (item) => item.category === "men_shoes"
         )
 
         setTrendingProducts(filteredTrendingProducts)
@@ -47,6 +47,8 @@ function Home() {
 
         window.scroll(0,0)
     }, [products])
+
+    console.log(products)
 
     return (
         <Helmet title={"Home"}>
@@ -80,7 +82,7 @@ function Home() {
                 <Container>
                     <Row>
                         <Col lg={12} className="text-center">
-                            <h2>Trending Products</h2>
+                            <h2>Женское одежди</h2>
                         </Col>
                         <ProductsList data={trendingProducts} loading={loading}/>
                     </Row>
@@ -90,7 +92,7 @@ function Home() {
                 <Container>
                     <Row>
                         <Col lg={12} className="text-center">
-                            <h2>Best Sales</h2>
+                            <h2>Мужское одежди</h2>
                         </Col>
                         <ProductsList data={bestSalesProducts} loading={loading}/>
                     </Row>
@@ -128,7 +130,7 @@ function Home() {
                 <Container>
                     <Row>
                         <Col lg={12} className="text-center mb-5">
-                            <h2 className="section__title">New Arrivals</h2>
+                            <h2 className="section__title">Детский одежда</h2>
                         </Col>
                         <ProductsList data={mobileProducts} loading={loading}/>
                         <ProductsList data={wirelessProducts} loading={loading}/>

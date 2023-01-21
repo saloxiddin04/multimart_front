@@ -17,39 +17,39 @@ function Shop() {
         if (filterValue === undefined) {
             setProductsData(products)
         }
-        if (filterValue === "sofa") {
+        if (filterValue === "woman_dress") {
             const filteredProducts = products.filter(
-                (item) => item.category === "sofa"
+                (item) => item.category === "woman_dress"
             )
             setProductsData(filteredProducts)
         }
-        if (filterValue === "mobile") {
+        if (filterValue === "man_dress") {
             const filteredProducts = products.filter(
-                (item) => item.category === "mobile"
+                (item) => item.category === "man_dress"
             )
             setProductsData(filteredProducts)
         }
-        if (filterValue === "chair") {
+        if (filterValue === "children_dress") {
             const filteredProducts = products.filter(
-                (item) => item.category === "chair"
+                (item) => item.category === "children_dress"
             )
             setProductsData(filteredProducts)
         }
-        if (filterValue === "mobile") {
+        if (filterValue === "women_shoes") {
             const filteredProducts = products.filter(
-                (item) => item.category === "mobile"
+                (item) => item.category === "women_shoes"
             )
             setProductsData(filteredProducts)
         }
-        if (filterValue === "watch") {
+        if (filterValue === "men_shoes") {
             const filteredProducts = products.filter(
-                (item) => item.category === "watch"
+                (item) => item.category === "men_shoes"
             )
             setProductsData(filteredProducts)
         }
-        if (filterValue === "wireless") {
+        if (filterValue === "children_shoes") {
             const filteredProducts = products.filter(
-                (item) => item.category === "wireless"
+                (item) => item.category === "children_shoes"
             )
             setProductsData(filteredProducts)
         }
@@ -78,11 +78,12 @@ function Shop() {
                             <div className="filter__widget">
                                 <select className="w-100" onChange={handleFilter} defaultValue="all">
                                     <option value="all">Filter by category</option>
-                                    <option value="sofa">Sofa</option>
-                                    <option value="chair">Chair</option>
-                                    <option value="mobile">Mobile</option>
-                                    <option value="watch">Watch</option>
-                                    <option value="wireless">Wireless</option>
+                                    <option value="woman_dress">Женское одежда</option>
+                                    <option value="man_dress">Мужское одежда</option>
+                                    <option value="children_dress">Детский одежда</option>
+                                    <option value="women_shoes">Женское обув</option>
+                                    <option value="men_shoes">Мужское обув</option>
+                                    <option value="children_shoes">Детский обув</option>
                                 </select>
                             </div>
                         </Col>
