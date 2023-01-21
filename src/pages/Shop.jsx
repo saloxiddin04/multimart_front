@@ -14,6 +14,9 @@ function Shop() {
 
     const handleFilter = (e) => {
         const filterValue = e?.target?.value
+        if (filterValue === 'all') {
+            setProductsData(products)
+        }
         if (filterValue === undefined) {
             setProductsData(products)
         }
@@ -76,8 +79,8 @@ function Shop() {
                     <Row>
                         <Col lg={3} md={6} xs={12}>
                             <div className="filter__widget">
-                                <select className="w-100" onChange={handleFilter} defaultValue="all">
-                                    <option value="all">Filter by category</option>
+                                <select className="w-100" onChange={handleFilter}>
+                                    <option value="all">Все</option>
                                     <option value="woman_dress">Женское одежда</option>
                                     <option value="man_dress">Мужское одежда</option>
                                     <option value="children_dress">Детский одежда</option>

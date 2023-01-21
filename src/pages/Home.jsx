@@ -19,6 +19,7 @@ function Home() {
     const [mobileProducts, setMobileProducts] = useState([])
     const [wirelessProducts, setWirelessProducts] = useState([])
     const [popularProducts, setPopularProductsProducts] = useState([])
+    const [womenShoesProducts, setWomenShoesProductsProducts] = useState([])
 
     const year = new Date().getFullYear()
 
@@ -38,12 +39,16 @@ function Home() {
         const filteredPopularProducts = products.filter(
             (item) => item.category === "men_shoes"
         )
+        const filteredWomenShoesProducts = products.filter(
+            (item) => item.category === "women_shoes"
+        )
 
         setTrendingProducts(filteredTrendingProducts)
         setBestSalesProducts(filteredBestProducts)
         setMobileProducts(filteredMobileProducts)
         setWirelessProducts(filteredWirelessProducts)
         setPopularProductsProducts(filteredPopularProducts)
+        setWomenShoesProductsProducts(filteredWomenShoesProducts)
 
         window.scroll(0,0)
     }, [products])
@@ -141,9 +146,10 @@ function Home() {
                 <Container>
                     <Row>
                         <Col lg={12} className="text-center mb-5">
-                            <h2 className="section__title">Popular in Category</h2>
+                            <h2 className="section__title">Мужское и Женское обуви</h2>
                         </Col>
                         <ProductsList data={popularProducts} loading={loading}/>
+                        <ProductsList data={womenShoesProducts} loading={loading}/>
                     </Row>
                 </Container>
             </section>
