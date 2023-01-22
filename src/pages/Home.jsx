@@ -9,6 +9,7 @@ import Clock from "../components/UI/Clock";
 import counterImg from '../assets/images/counter-timer-img.png'
 import '../styles/home.css'
 import useGetData from "../custom_hooks/useGetData";
+import ProductSkeleton from "../components/UI/ProductSkeleton";
 
 function Home() {
 
@@ -21,7 +22,19 @@ function Home() {
     const [popularProducts, setPopularProductsProducts] = useState([])
     const [womenShoesProducts, setWomenShoesProductsProducts] = useState([])
 
+    const [currentPage, setCurrentPage] = useState(4);
+
+    const loadMore = () => {
+        setCurrentPage(currentPage + 4)
+    }
+
     const year = new Date().getFullYear()
+
+    const renderSkeleton = () => {
+        return Array(4)
+            .fill("")
+            .map((_, i) => <ProductSkeleton key={i}/>)
+    }
 
     useEffect(() => {
         const filteredTrendingProducts = products.filter(
@@ -49,11 +62,7 @@ function Home() {
         setWirelessProducts(filteredWirelessProducts)
         setPopularProductsProducts(filteredPopularProducts)
         setWomenShoesProductsProducts(filteredWomenShoesProducts)
-
-        window.scroll(0,0)
     }, [products])
-
-    console.log(products)
 
     return (
         <Helmet title={"Home"}>
@@ -89,7 +98,23 @@ function Home() {
                         <Col lg={12} className="text-center">
                             <h2>Женское одежди</h2>
                         </Col>
-                        <ProductsList data={trendingProducts} loading={loading}/>
+                        {
+                            loading
+                                ?
+                                renderSkeleton()
+                                :
+                                <>
+                                    <ProductsList data={trendingProducts} visible={currentPage} loading={loading}/>
+                                    {currentPage < trendingProducts.length && (
+                                        <button
+                                            className="btn btn-primary col-md-2 col-lg-3 col-xl-2 m-auto mt-3"
+                                            onClick={loadMore}
+                                        >
+                                            Load more
+                                        </button>
+                                    )}
+                                </>
+                        }
                     </Row>
                 </Container>
             </section>
@@ -99,7 +124,22 @@ function Home() {
                         <Col lg={12} className="text-center">
                             <h2>Мужское одежди</h2>
                         </Col>
-                        <ProductsList data={bestSalesProducts} loading={loading}/>
+                        {
+                            loading ?
+                                renderSkeleton()
+                                :
+                                <>
+                                    <ProductsList data={bestSalesProducts} visible={currentPage} loading={loading}/>
+                                    {currentPage < bestSalesProducts.length && (
+                                        <button
+                                            className="btn btn-primary col-md-2 col-lg-3 col-xl-2 m-auto mt-3"
+                                            onClick={loadMore}
+                                        >
+                                            Load more
+                                        </button>
+                                    )}
+                                </>
+                        }
                     </Row>
                 </Container>
             </section>
@@ -137,8 +177,24 @@ function Home() {
                         <Col lg={12} className="text-center mb-5">
                             <h2 className="section__title">Детский одежда</h2>
                         </Col>
-                        <ProductsList data={mobileProducts} loading={loading}/>
-                        <ProductsList data={wirelessProducts} loading={loading}/>
+                        {
+                            loading
+                                ?
+                                renderSkeleton()
+                                :
+                                <>
+                                    <ProductsList data={mobileProducts} visible={currentPage} loading={loading}/>
+                                    <ProductsList data={wirelessProducts} visible={currentPage} loading={loading}/>
+                                    {currentPage < mobileProducts.length || currentPage < wirelessProducts.length && (
+                                        <button
+                                            className="btn btn-primary col-md-2 col-lg-3 col-xl-2 m-auto mt-3"
+                                            onClick={loadMore}
+                                        >
+                                            Load more
+                                        </button>
+                                    )}
+                                </>
+                        }
                     </Row>
                 </Container>
             </section>
@@ -148,8 +204,24 @@ function Home() {
                         <Col lg={12} className="text-center mb-5">
                             <h2 className="section__title">Мужское и Женское обуви</h2>
                         </Col>
-                        <ProductsList data={popularProducts} loading={loading}/>
-                        <ProductsList data={womenShoesProducts} loading={loading}/>
+                        {
+                            loading
+                                ?
+                                renderSkeleton()
+                                :
+                                <>
+                                    <ProductsList data={popularProducts} visible={currentPage} loading={loading}/>
+                                    <ProductsList data={womenShoesProducts} visible={currentPage} loading={loading}/>
+                                    {currentPage < popularProducts.length || currentPage < womenShoesProducts.length && (
+                                        <button
+                                            className="btn btn-primary col-md-2 col-lg-3 col-xl-2 m-auto mt-3"
+                                            onClick={loadMore}
+                                        >
+                                            Load more
+                                        </button>
+                                    )}
+                                </>
+                        }
                     </Row>
                 </Container>
             </section>

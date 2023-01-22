@@ -1,10 +1,10 @@
 import React from 'react';
 import ProductCard from "./ProductCard";
 
-function ProductsList({data, loading}) {
+function ProductsList({data, loading, visible}) {
     return (
         <>
-            {data && data?.map((item) => (
+            {data && data?.slice(0, visible).map((item) => (
                 <ProductCard item={item} loading={loading} key={item.id}/>
             ))}
         </>

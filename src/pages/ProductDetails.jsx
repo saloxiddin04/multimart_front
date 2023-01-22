@@ -133,15 +133,13 @@ function ProductDetails() {
                                 <p className="mt-3">{shortDesc}</p>
                                 <div className="d-flex gap-3 sizes m-1">
                                     {sizes && sizes?.map((size, i) => (
-                                        <label
-                                            key={size.value}
-                                        >
-                                <span
-                                    className={selectedSize === i ? "p-1 border border-primary rounded active" : "p-1 border"}
-                                    onClick={() => hanClick(i)}
-                                >
-                                    {size.label}
-                                </span>
+                                        <label key={size.value}>
+                                            <span
+                                                className={selectedSize === i ? "p-1 border border-primary rounded active" : "p-1 border"}
+                                                onClick={() => hanClick(i)}
+                                            >
+                                                {size.label}
+                                            </span>
                                         </label>
                                     ))}
                                 </div>

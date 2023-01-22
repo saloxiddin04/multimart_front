@@ -82,8 +82,6 @@ function Cart() {
 
 const Tr = ({item}) => {
 
-    const [selectedSize, setSelectedSize] = useState([])
-
     const dispatch = useDispatch()
     const deleteProduct = () => {
         dispatch(cartActions.deleteItem({
@@ -92,10 +90,6 @@ const Tr = ({item}) => {
         toast.success("Deleted successfully")
     }
 
-
-    const handleChange = (e) => {
-        selectedSize.push(e.target.value)
-    }
     const incItem = () => {
         dispatch(
             cartActions.addItem({
@@ -125,7 +119,7 @@ const Tr = ({item}) => {
                     src={
                         item.urls === undefined ? "" : item.urls[0]
                     }
-                     alt="urls"
+                    alt="urls"
                 />
             </td>
             <td>{item.title}</td>

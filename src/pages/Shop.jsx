@@ -5,12 +5,17 @@ import {Container, Row, Col} from "reactstrap";
 import ProductsList from "../components/UI/ProductsList";
 import "../styles/Shop.css"
 import useGetData from "../custom_hooks/useGetData";
-import Skeleton from "react-loading-skeleton";
+import ProductSkeleton from "../components/UI/ProductSkeleton";
 
 function Shop() {
 
     const {data: products, loading} = useGetData('products')
-    const [productsData, setProductsData] = useState(products)
+    const [productsData, setProductsData] = useState(productsData)
+    const [currentPage, setCurrentPage] = useState(4);
+
+    const loadMore = () => {
+        setCurrentPage(currentPage + 4)
+    }
 
     const handleFilter = (e) => {
         const filterValue = e?.target?.value
@@ -68,8 +73,14 @@ function Shop() {
 
     useEffect(() => {
         handleFilter()
-        window.scroll(0,0)
+        // window.scroll(0,0)
     }, [products])
+
+    const renderSkeleton = () => {
+        return Array(4)
+            .fill("")
+            .map((_, i) => <ProductSkeleton key={i}/>)
+    }
 
     return (
         <Helmet title="Shop">
@@ -107,9 +118,14 @@ function Shop() {
                     <Row>
                         {productsData.length === 0 ?
                             (
-                                <h1 className="text-center fs-4">No products are found!</h1>
+                                renderSkeleton()
                             ) : (
-                                <ProductsList data={productsData} loading={loading}/>
+                                <>
+                                    <ProductsList data={productsData} visible={currentPage} loading={loading}/>
+                                    {currentPage < productsData.length && (
+                                        <button className="btn btn-primary col-md-2 col-lg-3 col-xl-2 m-auto mt-3" onClick={loadMore}>Load more</button>
+                                    )}
+                                </>
                             )
                         }
                     </Row>
