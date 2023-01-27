@@ -10,7 +10,7 @@ import ProductSkeleton from "../components/UI/ProductSkeleton";
 function Shop() {
 
     const {data: products, loading} = useGetData('products')
-    const [productsData, setProductsData] = useState(productsData)
+    const [productsData, setProductsData] = useState(products)
     const [currentPage, setCurrentPage] = useState(4);
 
     const loadMore = () => {
@@ -116,7 +116,7 @@ function Shop() {
             <section className="pt-0">
                 <Container>
                     <Row>
-                        {productsData.length === 0 ?
+                        {productsData?.length === 0 ?
                             (
                                 renderSkeleton()
                             ) : (
